@@ -42,19 +42,28 @@ export default class PermissionsScreen extends Component {
         let microphonePermission;
         let microphonePermissionDenied;
 
+        let speechRecognitionPermission;
+        let speechRecognitionPermissionDenied;
+
         RNSFSpeechRecognizer.isMicrophonePermissionGranted()
         .then(granted => {microphonePermission = granted;})
         .then(() => RNSFSpeechRecognizer.isMicrophonePermissionDenied())
         .then(denied => {microphonePermissionDenied = denied;})
+        .then(() => RNSFSpeechRecognizer.isSpeechRecognitionPermissionGranted())
+        .then(granted => {speechRecognitionPermission = granted;})
+        .then(() => RNSFSpeechRecognizer.isSpeechRecognitionPermissionDenied())
+        .then(denied => {speechRecognitionPermissionDenied = denied;})
         .then(() => this.setState(() => ({
             microphonePermission,
-            microphonePermissionDenied
+            microphonePermissionDenied,
+            speechRecognitionPermission,
+            speechRecognitionPermissionDenied
         })));
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const {microphonePermission} = this.state;
-        if (microphonePermission) {
+        const {microphonePermission, speechRecognitionPermission} = this.state;
+        if (microphonePermission && speechRecognitionPermission) {
             const resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [
@@ -75,25 +84,42 @@ export default class PermissionsScreen extends Component {
             return;
         }
 
-        RNSFSpeechRecognizer.requestMicrophonePermission(
-            () => this._checkPermissions()
-        );
+        RNSFSpeechRecognizer.requestMicrophonePermission()
+        .then(() => this._checkPermissions());
+    }
+
+    _requestSpeechRecognitionPermission = () => {
+        if (this.state.speechRecognitionPermissionDenied) {
+            AlertIOS.alert(
+                'Speech Recognition Was Denied',
+                'We cant turn it on. You\'ll need to go ' +
+                'to "iOS System Settings > This App" to manualy allow access'
+            );
+            return;
+        }
+
+        RNSFSpeechRecognizer.requestSpeechRecognitionPermission()
+        .then(() => this._checkPermissions());
     }
 
     render() {
         return (
             <View style={styles.screen}>
                 {!this.state.microphonePermission && (
-                    <Button
-                        onPress={this._requestMicrophonePermission}
-                        title="Allow Microphone Access"
-                    />
+                    <View style={{marginTop:40}}>
+                        <Button
+                            onPress={this._requestMicrophonePermission}
+                            title="Tap To Allow Microphone Access"
+                        />
+                    </View>
                 )}
                 {!this.state.speechRecognitionPermission && (
-                    <Button
-                        onPress={() => AlertIOS.alert('Not implemented yet.')}
-                        title="Allow Speech Recognition"
-                    />
+                    <View style={{marginTop:40}}>
+                        <Button
+                            onPress={this._requestSpeechRecognitionPermission}
+                            title="Tap To Allow Speech Recognition"
+                        />
+                    </View>
                 )}
             </View>
         );

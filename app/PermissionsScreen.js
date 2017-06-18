@@ -16,6 +16,7 @@ export default class PermissionsScreen extends Component {
 
     constructor(props) {
         super(props);
+        this.speechRecognizer = new RNSFSpeechRecognizer();
         this.state = {
             microphonePermission: false,
             microphonePermissionDenied: false,
@@ -30,6 +31,7 @@ export default class PermissionsScreen extends Component {
         AppState.addEventListener('change', this._handleAppStateChange);
     }
     componentWillUnmount() {
+        this.speechRecognizer.destroy(); // important
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
     _handleAppStateChange = nextAppState => {
@@ -45,13 +47,13 @@ export default class PermissionsScreen extends Component {
         let speechRecognitionPermission;
         let speechRecognitionPermissionDenied;
 
-        RNSFSpeechRecognizer.isMicrophonePermissionGranted()
+        this.speechRecognizer.isMicrophonePermissionGranted()
         .then(granted => {microphonePermission = granted;})
-        .then(() => RNSFSpeechRecognizer.isMicrophonePermissionDenied())
+        .then(() => this.speechRecognizer.isMicrophonePermissionDenied())
         .then(denied => {microphonePermissionDenied = denied;})
-        .then(() => RNSFSpeechRecognizer.isSpeechRecognitionPermissionGranted())
+        .then(() => this.speechRecognizer.isSpeechRecognitionPermissionGranted())
         .then(granted => {speechRecognitionPermission = granted;})
-        .then(() => RNSFSpeechRecognizer.isSpeechRecognitionPermissionDenied())
+        .then(() => this.speechRecognizer.isSpeechRecognitionPermissionDenied())
         .then(denied => {speechRecognitionPermissionDenied = denied;})
         .then(() => this.setState(() => ({
             microphonePermission,
@@ -84,7 +86,7 @@ export default class PermissionsScreen extends Component {
             return;
         }
 
-        RNSFSpeechRecognizer.requestMicrophonePermission()
+        this.speechRecognizer.requestMicrophonePermission()
         .then(() => this._checkPermissions());
     }
 
@@ -98,7 +100,7 @@ export default class PermissionsScreen extends Component {
             return;
         }
 
-        RNSFSpeechRecognizer.requestSpeechRecognitionPermission()
+        this.speechRecognizer.requestSpeechRecognitionPermission()
         .then(() => this._checkPermissions());
     }
 

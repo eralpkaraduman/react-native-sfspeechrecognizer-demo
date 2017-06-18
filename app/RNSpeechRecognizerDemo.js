@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {StackNavigator} from 'react-navigation';
 
-import styles from './styles';
-import HomeScreen from './HomeScreen'
+import PermissionsScreen from './PermissionsScreen';
+import RecognitionScreen from './RecognitionScreen';
 
-export default class RNSpeechRecognizerDemo extends Component {
-  render() {
-    return (
-      <View style={styles.rootContainer}>
-        <HomeScreen/>
-      </View>
-    );
-  }
-}
+const RNSpeechRecognizerDemo = StackNavigator({
+  Permissions: {screen: PermissionsScreen },
+  Recognition: {screen: RecognitionScreen}
+},{
+  mode: 'card',
+  headerMode: 'none'
+});
+
+export default RNSpeechRecognizerDemo;

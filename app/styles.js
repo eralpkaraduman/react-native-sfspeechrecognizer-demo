@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export default styles = StyleSheet.create({
-  rootContainer: {
+  screen: {
     paddingTop: 20,
     backgroundColor: 'white',
     alignSelf: 'stretch',

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import RNSFSpeechRecognizer from 'RNSFSpeechRecognizer';
+import SpeechRecognizer from 'RNSFSpeechRecognizer';
 
 export default class RecognitionScreen extends Component {
     constructor(props) {
@@ -16,21 +16,18 @@ export default class RecognitionScreen extends Component {
         this.state = {
             recognizerStatus: undefined
         };
-        this.speechRecognizer = new RNSFSpeechRecognizer({
-            onStatusChanged: this.onRecognizerStatusChanged,
-            onTranscriptionReceived: null,
-            onError: null
-        });
+        this.speechRecognizerOptions = {
+          onStatusChanged: this.onRecognizerStatusChanged,
+          onTranscriptionReceived: null,
+          onError: null
+        };
     }
 
     componentDidMount() {
-        this.speechRecognizer.getStatus()
-        .then(recognizerStatus => this.setState(() => ({recognizerStatus})))
-        .then(() => this.speechRecognizer.prepare());
-    }
+      this._updateSpeechRecognizerStatus();
 
-    componentWillUnmount() {
-        this.speechRecognizer.destroy(); // important
+      // prepare must be called before starting the recognition, calling stop will also require preparation before starting again
+      SpeechRecognizer.prepare(this.speechRecognizerOptions);
     }
 
     onRecognizerStatusChanged = (recognizerStatus, prevRecognizerStatus) => {
@@ -45,4 +42,7 @@ export default class RecognitionScreen extends Component {
             </View>
         );
     }
+
+    _updateSpeechRecognizerStatus = () => SpeechRecognizer.getStatus()
+      .then(recognizerStatus => this.setState(() => ({recognizerStatus})));
 }

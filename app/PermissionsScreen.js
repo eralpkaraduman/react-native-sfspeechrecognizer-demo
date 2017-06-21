@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import RNSFSpeechRecognizer from 'RNSFSpeechRecognizer';
+import SpeechRecognizer from 'RNSFSpeechRecognizer';
 
 export default class PermissionsScreen extends Component {
     static propTypes = {
@@ -16,7 +16,6 @@ export default class PermissionsScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.speechRecognizer = new RNSFSpeechRecognizer();
         this.state = {
             microphonePermission: false,
             microphonePermissionDenied: false,
@@ -31,7 +30,6 @@ export default class PermissionsScreen extends Component {
         AppState.addEventListener('change', this._handleAppStateChange);
     }
     componentWillUnmount() {
-        this.speechRecognizer.destroy(); // important
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
     _handleAppStateChange = nextAppState => {
@@ -42,10 +40,10 @@ export default class PermissionsScreen extends Component {
 
     _checkPermissions = () => {
         Promise.all([
-            this.speechRecognizer.isMicrophonePermissionGranted(),
-            this.speechRecognizer.isMicrophonePermissionDenied(),
-            this.speechRecognizer.isSpeechRecognitionPermissionGranted(),
-            this.speechRecognizer.isSpeechRecognitionPermissionDenied()
+            SpeechRecognizer.isMicrophonePermissionGranted(),
+            SpeechRecognizer.isMicrophonePermissionDenied(),
+            SpeechRecognizer.isSpeechRecognitionPermissionGranted(),
+            SpeechRecognizer.isSpeechRecognitionPermissionDenied()
         ]).then(results => this.setState(() => ({
             microphonePermission: results[0],
             microphonePermissionDenied: results[1],
@@ -77,8 +75,8 @@ export default class PermissionsScreen extends Component {
             return;
         }
 
-        this.speechRecognizer.requestMicrophonePermission()
-        .then(() => this._checkPermissions());
+        SpeechRecognizer.requestMicrophonePermission()
+          .then(() => this._checkPermissions());
     }
 
     _requestSpeechRecognitionPermission = () => {
@@ -91,8 +89,8 @@ export default class PermissionsScreen extends Component {
             return;
         }
 
-        this.speechRecognizer.requestSpeechRecognitionPermission()
-        .then(() => this._checkPermissions());
+        SpeechRecognizer.requestSpeechRecognitionPermission()
+          .then(() => this._checkPermissions());
     }
 
     render() {

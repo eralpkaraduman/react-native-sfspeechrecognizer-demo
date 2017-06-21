@@ -41,25 +41,16 @@ export default class PermissionsScreen extends Component {
     }
 
     _checkPermissions = () => {
-        let microphonePermission;
-        let microphonePermissionDenied;
-
-        let speechRecognitionPermission;
-        let speechRecognitionPermissionDenied;
-
-        this.speechRecognizer.isMicrophonePermissionGranted()
-        .then(granted => {microphonePermission = granted;})
-        .then(() => this.speechRecognizer.isMicrophonePermissionDenied())
-        .then(denied => {microphonePermissionDenied = denied;})
-        .then(() => this.speechRecognizer.isSpeechRecognitionPermissionGranted())
-        .then(granted => {speechRecognitionPermission = granted;})
-        .then(() => this.speechRecognizer.isSpeechRecognitionPermissionDenied())
-        .then(denied => {speechRecognitionPermissionDenied = denied;})
-        .then(() => this.setState(() => ({
-            microphonePermission,
-            microphonePermissionDenied,
-            speechRecognitionPermission,
-            speechRecognitionPermissionDenied
+        Promise.all([
+            this.speechRecognizer.isMicrophonePermissionGranted(),
+            this.speechRecognizer.isMicrophonePermissionDenied(),
+            this.speechRecognizer.isSpeechRecognitionPermissionGranted(),
+            this.speechRecognizer.isSpeechRecognitionPermissionDenied()
+        ]).then(results => this.setState(() => ({
+            microphonePermission: results[0],
+            microphonePermissionDenied: results[1],
+            speechRecognitionPermission: results[2],
+            speechRecognitionPermissionDenied: results[3],
         })));
     }
 

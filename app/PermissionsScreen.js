@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import SpeechRecognizer from 'RNSFSpeechRecognizer';
+import SpeechRecognizer from 'react-native-sfspeechrecognizer';
 
 export default class PermissionsScreen extends Component {
     static propTypes = {

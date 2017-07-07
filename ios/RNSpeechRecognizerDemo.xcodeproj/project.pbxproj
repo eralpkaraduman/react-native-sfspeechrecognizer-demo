@@ -21,8 +21,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		68712E34966848FE9C50C8BC /* libRNSFSpeechRecognizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7E4212D30C46A8922CD460 /* libRNSFSpeechRecognizer.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		A24082E8571A4561987C3D69 /* libRNSFSpeechRecognizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F1A2DF0900B456BAF86C1F9 /* libRNSFSpeechRecognizer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,9 +187,9 @@
 			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
 			remoteInfo = "double-conversion";
 		};
-		53DC6F011F0F9BFA0066B0FB /* PBXContainerItemProxy */ = {
+		53DC6F2D1F0FBE0A0066B0FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 7D2C0C5B5C784241B2F7E90B /* RNSFSpeechRecognizer.xcodeproj */;
+			containerPortal = 79CE2296A9C64CF4BDC2FF63 /* RNSFSpeechRecognizer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNSFSpeechRecognizer;
@@ -246,9 +246,9 @@
 		53AA47701EF5F8A2000516EB /* SpeechRecognitionManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpeechRecognitionManager.framework; path = "../node_modules/RNSFSpeechRecognizer/SpeechRecognitionManager/build/Debug-iphoneos/SpeechRecognitionManager.framework"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		7D2C0C5B5C784241B2F7E90B /* RNSFSpeechRecognizer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSFSpeechRecognizer.xcodeproj; path = "../node_modules/react-native-sfspeechrecognizer/RNSFSpeechRecognizer.xcodeproj"; sourceTree = "<group>"; };
+		79CE2296A9C64CF4BDC2FF63 /* RNSFSpeechRecognizer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSFSpeechRecognizer.xcodeproj; path = "../node_modules/react-native-sfspeechrecognizer/RNSFSpeechRecognizer.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		AC7E4212D30C46A8922CD460 /* libRNSFSpeechRecognizer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSFSpeechRecognizer.a; sourceTree = "<group>"; };
+		8F1A2DF0900B456BAF86C1F9 /* libRNSFSpeechRecognizer.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSFSpeechRecognizer.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,7 +267,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				68712E34966848FE9C50C8BC /* libRNSFSpeechRecognizer.a in Frameworks */,
+				A24082E8571A4561987C3D69 /* libRNSFSpeechRecognizer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,10 +390,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		53DC6EE31F0F9BFA0066B0FB /* Products */ = {
+		53DC6F0F1F0FBE0A0066B0FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				53DC6F021F0F9BFA0066B0FB /* libRNSFSpeechRecognizer.a */,
+				53DC6F2E1F0FBE0A0066B0FB /* libRNSFSpeechRecognizer.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -430,7 +430,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				7D2C0C5B5C784241B2F7E90B /* RNSFSpeechRecognizer.xcodeproj */,
+				79CE2296A9C64CF4BDC2FF63 /* RNSFSpeechRecognizer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -557,8 +557,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 53DC6EE31F0F9BFA0066B0FB /* Products */;
-					ProjectRef = 7D2C0C5B5C784241B2F7E90B /* RNSFSpeechRecognizer.xcodeproj */;
+					ProductGroup = 53DC6F0F1F0FBE0A0066B0FB /* Products */;
+					ProjectRef = 79CE2296A9C64CF4BDC2FF63 /* RNSFSpeechRecognizer.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -730,11 +730,11 @@
 			remoteRef = 530D0A431EF572AD00EFBC21 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		53DC6F021F0F9BFA0066B0FB /* libRNSFSpeechRecognizer.a */ = {
+		53DC6F2E1F0FBE0A0066B0FB /* libRNSFSpeechRecognizer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNSFSpeechRecognizer.a;
-			remoteRef = 53DC6F011F0F9BFA0066B0FB /* PBXContainerItemProxy */;
+			remoteRef = 53DC6F2D1F0FBE0A0066B0FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
@@ -834,6 +834,10 @@
 				);
 				INFOPLIST_FILE = RNSpeechRecognizerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RNSpeechRecognizerDemo\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -857,6 +861,10 @@
 				);
 				INFOPLIST_FILE = RNSpeechRecognizerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RNSpeechRecognizerDemo\"",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
